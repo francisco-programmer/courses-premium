@@ -3,72 +3,84 @@ import { BiSolidLogIn } from "react-icons/bi";
 import { FaUserPlus, FaShoppingCart } from "react-icons/fa";
 import ShoppinCart from "../Shop/ShoppinCart";
 import LocalStorage from "../LocalStorage/LocalStorage";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import Informacion from '../Informacion/Informacion'
+import Sidebar from "./Sidebar";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
   const handleSearch = (e) => {
-    e.preventDefault();
-    navigate(`/search/${search}`);
-  
+    if(search) {
+      e.preventDefault();
+      navigate(`/search/${search}`);
+    }
+    
+  e.preventDefault()
   }
 
 
 
   return (
     <div>
-      <div className="flex justify-between px-36 py-10 bg-gray-100">
+      <div className="flex justify-between  items-center md:px-36 md:pt-10 py-5 px-2 bg-gray-100">
         <div>
-          <h1 className="text-4xl font-poppins">Todoa10</h1>
+          <h1 className="text-xl font-poppins">Cursos Premium 10</h1>
+          
         </div>
-        
-          <form  onSubmit={handleSearch}
-          className="flex place-content-center gap-1">
- 
-         
+
+        <form
+          onSubmit={handleSearch}
+          className="md:flex place-content-center gap-1 hidden "
+        >
+          <div>
+
           <input
             type="search"
-            className="border-[1px] rounded-lg  px-5 "
+            className="rounded-lg  px-5   focus:outline-none py-1 shadow-lg"
             placeholder="Buscar Curso"
             onChange={(e) => setSearch(e.target.value)}
-          />
-          <button
-            className="bg-sky-300  px-2 rounded-lg font-poppins text-white font-bold border-[1px] border-black"
-              
-          >
+            />
+            </div>
+          <div>
+          <button className="bg-gradient-to-r from-sky-500 to-indigo-500 px-2 py-2 rounded-lg font-poppins text-white text-xs shadow-lg">
             Buscar
           </button>
-          </form>
-        
-        <div className="flex gap-2">
-          <LocalStorage />
+          </div>
+            
+        </form>
+
+        <div className="flex gap-2 items-center ">
           <ShoppinCart />
+          <LocalStorage />
         </div>
       </div>
+      
 
-      <div className="px-36">
-        <div className="bg-gray-900  flex gap-2 py-2 ">
-          <a className="text-gray-200 font-poppins border-r-[1px] px-2 hover:bg-gray-800">
-            Inicio
-          </a>
-          <a className="text-gray-200 font-poppins border-r-[1px] px-2 hover:bg-gray-800">
-            Preguntas Frecuentes
-          </a>
-          <a className="text-gray-200 font-poppins border-r-[1px] px-2 hover:bg-gray-800">
-            Cómo Descargar Gratis
-          </a>
-          <a className="text-gray-200 font-poppins border-r-[1px] px-2 hover:bg-gray-800">
-            Cómo Comprar con Paypal
-          </a>
-          <a className="text-gray-200 font-poppins border-r-[1px] px-2 hover:bg-gray-800">
-            Medios de Pago
-          </a>
-          <a className="text-gray-200 font-poppins border-r-[1px] px-2 hover:bg-gray-800">
-            Contactanós
-          </a>
-        </div>
+      
+{/* buscador de productos */}
+      <form
+        onSubmit={handleSearch}
+        className="md:hidden place-content-center gap-1 flex "
+      >
+        <input
+          type="search"
+          className="border-[1px] rounded-lg  px-5   focus:outline-none shadow-lg"
+          placeholder="Buscar Curso" 
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button className="bg-gradient-to-r from-sky-500 to-indigo-500 px-2 rounded-lg font-poppins text-white shadow-lg p-2">
+          Buscar
+        </button>
+      </form>
+      
+<Informacion />
+
+      <div className="lg:hidden  flex p-2 mt-2 justify-around bg-gradient-to-r from-sky-500 to-indigo-500 shadow-lg ">
+         <Informacion />             
+        <p className="text-gray-100">|</p>
+        <Sidebar />
       </div>
     </div>
   );

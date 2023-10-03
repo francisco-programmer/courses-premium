@@ -3,8 +3,14 @@ import { AiFillHome } from "react-icons/ai";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { FaCartPlus } from "react-icons/fa";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import {BsFillCartPlusFill} from 'react-icons/bs'
+import ShoppingCartContext from "../../../Context/ShoppingCartContext";
+import { useContext } from "react";
 
 const Search = () => {
+  const {addToCart} = useContext(ShoppingCartContext)
+
+
   const { search } = useParams();
   const navigate = useNavigate();
 
@@ -35,39 +41,58 @@ const Search = () => {
         <div>
           <MdOutlineKeyboardArrowRight />
         </div>
-        Cursos Marketing Digital
+       <strong>{search}</strong>
       </p>
 
       {
         filteredProducts.length === 0 && (<p className="font-poppins text-center p-5 text-3xl  ">No hay resultados...</p>)
       }
+      {
+        filteredProducts === null && (<p>no escribiste nada</p>)
+      }
 
-      <div className="grid grid-cols-4 gap-4">
+<div className="grid lg:grid-cols-4 grid-cols-2 gap-4 mt-2">
         {filteredProducts.map((product) => (
-          <div key={product.id} className="border-[1px] p-2">
-            <img src={product.link_poster} className="w-40 h-40" />
-            <div className="border-b-[1px]  border-t-[1px] text-center">
-              <p className="font-poppins font-bold text-xs text-gray-900">
-                {product.title}
-              </p>
-              <p className="font-poppins  text-xs text-gray-900">
-                {product.autor}
-              </p>
-            </div>
+          <div
+            key={product.id}
+            className="border-[1px]  rounded-lg shadow-lg flex flex-col justify-between  items-center" 
+          >
+            
+              <div className="w-[100px] h-[100px] flex  ">
+                <img onClick={() => handleProductClick(product)}
+                  src={product.link_poster}
+                  className="rounded-lg border-[1px] cursor-pointer hover:scale-95 transition-all duration-300"
+                />
+              </div>
+              <div>
+                <p onClick={() => handleProductClick(product)} className="hover:underline  cursor-pointer font-poppins font-bold text-xs text-center text-gray-900">
+                  {product.title}
+                </p>
+                <p className="font-poppins text-center text-xs text-gray-900">
+                  {product.autor}
+                </p>
+              </div>
+              <div className="flex items-center">
+                <p className=" font-poppins  text-gray-500 text-center  py-2 ">
+                  US$ {product.price}
+                </p>
 
-            <p className=" font-poppins  text-rojo text-center border-b-[1px] py-2 ">
-              US$ {product.price}
-            </p>
-            <div className="p-2 justify-center flex">
-              {" "}
-              <button
-                className="bg-gray-900 text-gray-100 flex products-center px-4 py-2 rounded-lg gap-1 text-xs"
-                onClick={() => handleProductClick(product)}
-              >
-                Ver
-              </button>
+                <div className="p-2 justify-center flex">
+                  {" "}
+                  <button onClick={() => addToCart(product)}
+                    className="text-gray-100  flex  bg-gradient-to-r from-sky-500 to-indigo-500 px-2 py-2 rounded-lg gap-1 items-center
+                    hover:scale-95 transition-all duration-300 "
+                    
+                  >
+                    <div>
+
+                    <BsFillCartPlusFill className='' />
+                  </div>
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
+         
         ))}
       </div>
     </div>

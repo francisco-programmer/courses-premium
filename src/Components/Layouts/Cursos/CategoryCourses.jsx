@@ -1,24 +1,33 @@
-import React,{useContext} from 'react'
+import React from 'react'
 import products from '../Cursos/Abc'
 import {AiFillHome} from 'react-icons/ai'
 import {MdOutlineKeyboardArrowRight} from 'react-icons/md'
 import {FaCartPlus} from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams} from 'react-router-dom'
 import {BsFillCartPlusFill} from 'react-icons/bs'
-import ShoppingCartContext from '../../../Context/ShoppingCartContext'
+import ShoppingCartContext from "../../../Context/ShoppingCartContext";
+import { useContext } from "react";
 
 
-const DescargasGratuitas = () => {
-  const { addToCart } =  useContext(ShoppingCartContext)
+const CategoryCourses = () => {
+  const {addToCart} = useContext(ShoppingCartContext)
+    const {categoria} = useParams()
   const navigate = useNavigate();
-  const [productMarketing, setProductMarketing] = (products)
+  
+
 
 
    // * function filter category 
-   const filterMarketing = products.filter(product => product.price === "0.00")
+   const filterMarketing = products.filter(product => {
+    if(categoria == 'Descarga Gratuita') {
+        return product.category.toLocaleLowerCase() === categoria.toLocaleLowerCase() && product.price === "0.00"
+    }else {
+        return product.category.toLocaleLowerCase() === categoria.toLocaleLowerCase()
+    }
+   })
 
-
+const category = filterMarketing[0].category
    // * function dinamycs routes
      const handleProductClick = (product) => {
        navigate(`/${product.route}`);
@@ -26,7 +35,7 @@ const DescargasGratuitas = () => {
     
   return (
     <div className="p-2">
-      <p className="font-poppins text-2xl flex  text-gray-900">
+      <p className="font-poppins text-2xl flex products-center text-gray-900">
         {" "}
         <div>
           <AiFillHome />
@@ -34,7 +43,7 @@ const DescargasGratuitas = () => {
         <div>
           <MdOutlineKeyboardArrowRight />
         </div>
-        <p className='text-lg'>Descargas Gratuitas</p>
+        <p className='text-lg'>{category}</p>
       </p>
 
       <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 mt-2">
@@ -85,4 +94,4 @@ const DescargasGratuitas = () => {
   );
 }
 
-export default DescargasGratuitas
+export default CategoryCourses

@@ -9,7 +9,7 @@ const Notifications = () => {
     <div>
          
         
-        <ToastContainer />
+        
     </div>
   )
 }

@@ -1,14 +1,19 @@
 import React from 'react'
 import App from '../App'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, } from 'react-router-dom'
 import ErrorPage404 from '../Page/ErrorPage404'
 import HomePage from '../Page/HomePage'
-import MarketingDigital from '../Components/Layouts/Cursos/MarketingDigital'
 import DescargasGratuitas from '../Components/Layouts/Cursos/DescargasGratuitas'
 import ProductPage from '../Components/productPage/ProductPage'
-import Programacion from '../Components/Layouts/Cursos/Programacion'
-import Compras from '../Components/Layouts/Compras/Compras'
 import Search from '../Components/Layouts/Cursos/Search'
+import Register from '../Register/Register'
+import Configuration from '../Register/Configuration'
+import PreguntasFrecuentes from '../Components/Informacion/PreguntasFrecuentes'
+import ComoDescargarGratis from '../Components/Informacion/ComoDescargarGratis'
+import ComoComprarConPaypal from '../Components/Informacion/ComoComprarConPaypal'
+import MediosDePago from '../Components/Informacion/MediosDePago'
+import Contacto from '../Components/Informacion/Contacto'
+import CategoryCourses from '../Components/Layouts/Cursos/CategoryCourses'
 
 
 const router = createBrowserRouter([
@@ -27,28 +32,50 @@ const router = createBrowserRouter([
     element: <HomePage />,
     children: [
       {
-        path: "marketing-digital",
-        element: <MarketingDigital />,
+        path: "/:nameproduct",
+        element: <ProductPage />,
       },
       {
-        path:"/:nameproduct",
-        element: <ProductPage />
-      },
-      {
-        path: "descargas-gratuitas",
+        path: "categoria/descargas-gratuitas",
         element: <DescargasGratuitas />,
       },
-      {
-        path: "programacion",
-        element: <Programacion/>,
-      },
-      {
-        path: "compras",
-        element: <Compras />,
-      },
+
       {
         path: "/search/:search",
         element: <Search />,
+      },
+      {
+        path: "/registrarme",
+        element: <Register />,
+      },
+      {
+        path: "/configuracion",
+        element: <Configuration />,
+      },
+      {
+        path: "/preguntas-frecuentes",
+        element: <PreguntasFrecuentes />,
+      },
+      {
+        path: "/como-descargar-gratis",
+        element: <ComoDescargarGratis />,
+      },
+      {
+        path: "/como-comprar-con-paypal",
+        element: <ComoComprarConPaypal />,
+      },
+      {
+        path: "/medios-de-pago",
+        element: <MediosDePago />,
+      },
+      {
+        path: "/contacto",
+        element: <Contacto />,
+      },
+
+      {
+        path: "/categoria/:categoria",
+        element: <CategoryCourses />,
       },
     ],
   },

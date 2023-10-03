@@ -3,6 +3,8 @@ import products from '../Layouts/Cursos/Abc'
 import {FaUserPlus, FaShoppingCart} from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 import ShoppingCartContext from '../../Context/ShoppingCartContext';
+import {AiFillHome} from 'react-icons/ai'
+import {MdOutlineKeyboardArrowRight} from 'react-icons/md'
 
 
 const ProductPage = () => {
@@ -14,10 +16,18 @@ const ProductPage = () => {
 
 
   return (
-    <div>
-      {product.category} > {product.title}
+    <div className='p-2'>
+    <p className='font-poppins text-2xl flex items-center text-gray-900'>
+       <div>
+          <AiFillHome />
+        </div>
+        <div><MdOutlineKeyboardArrowRight /></div>
+        <p className='text-lg'>{product.category}</p> 
+        <div><MdOutlineKeyboardArrowRight /></div>
+        <p className='text-lg'>{product.title}</p>
+      </p>   
       <div className="flex gap-5 py-5">
-        <img src={product.link_poster} className="w-40 h-40" />
+        <img src={product.link_poster} className="w-40 h-40 rounded-lg shadow-lg" />
         <div className="flex flex-col justify-between">
           <div>
             <p className="font-poppins font-bold text-2xl">{product.title}</p>

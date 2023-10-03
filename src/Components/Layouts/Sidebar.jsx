@@ -1,41 +1,96 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import {BiSolidRightArrow} from 'react-icons/bi'
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { BiSolidRightArrow } from "react-icons/bi";
+import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
+import {
+  RiNotification3Line,
+  RiArrowDownSLine,
+  RiSettings3Line,
+  RiLogoutCircleRLine,
+  RiThumbUpLine,
+  RiChat3Line,
+} from "react-icons/ri";
 
 const Sidebar = () => {
- 
-   return (
-     <div>
-       <div className="flex flex-col gap-1 pr-2 ">
-        <div className=''>
+  const categorias = [
+    { name: "Descargas Gratuitas", route: "descargas-gratuitas" },
+    { name: "Marketing", route: "marketing" },
+    { name: "Programación", route: "programacion" },
+    { name: "Dinero", route: "dinero" },
+    {name: "Idiomas", route: "idiomas"},
+    {name: "Diseño", route: "diseño"},
+    {name: "Desarrollo Personal", route:"desarrollo personal"},
+    {name: "Negocio", route: "negocio"}
+  ];
+  const navigate = useNavigate();
+  const handleProductClick = (item) => {
+    navigate(`/categoria/${item.route}`);
+  };
 
-        
-         <p className="bg-gray-900 text-gray-200 font-bold font-poppins mt-2 p-2">
-           Categorias
-         </p>
-        <div className='bg-white'>
+  const hr = (
+    <div className="px-2">
+      <hr className="border-gray-100 "></hr>
+    </div>
+  );
 
-        
-         <button className="font-poppins flex items-center text-sm border-b hover:underline hover:cursor-pointer">
-           <div>
-             <BiSolidRightArrow />
-           </div>
+  return (
+    <div className="">
+      <div className="bg-white rounded-lg  mt-2 shadow-lg">
+        <div className=" lg:flex hidden flex-col gap-1 pr-2   ">
+          <div className=""></div>
+          <p className=" text-sky-500  text-center  font-poppins bg-white rounded-lg  ">
+            Categorias
+          </p>
+          {hr}
+          {categorias.map((item) => (
+            <div className="">
+              <button
+                onClick={() => handleProductClick(item)}
+                className="font-poppins flex items-center gap-1 text-sm hover:underline hover:cursor-pointer"
+              >
+                <div>
+                  <BiSolidRightArrow className="text-[8px]" />
+                </div>
 
-           <Link to="descargas-gratuitas">Descargas Gratuitas</Link>
-         </button>
-         <button className="font-poppins flex items-center text-sm border-b hover:underline hover:cursor-pointer border-lg">
-           <div>
-             <BiSolidRightArrow />
-           </div>
+                {item.name}
+              </button>
+              {hr}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="lg:hidden flex">
+        {/* menu movil */}
+        <Menu
+          menuButton={
+            <MenuButton className="text-gray-200 font-poppins">
+              Categorias
+            </MenuButton>
+          }
+          align="start"
+          arrow
+          transition
+        >
+          {categorias.map((item) => (
+            <div className="">
+              <button
+                onClick={() => handleProductClick(item)}
+                className="font-poppins flex items-center gap-1 text-sm hover:underline hover:cursor-pointer"
+              >
+                <div>
+                  <BiSolidRightArrow className="text-[8px]" />
+                </div>
 
-           <Link to="programacion">Programación</Link>
-         </button>
-         
-</div>
-         </div>
-       </div>
-     </div>
-   );
-}
+                {item.name}
+              </button>
+            </div>
+          ))}
+        </Menu>
+      </div>
+    </div>
+  );
+};
 
-export default Sidebar
+export default Sidebar;

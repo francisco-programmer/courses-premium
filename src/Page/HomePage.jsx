@@ -7,11 +7,11 @@ const HomePage = () => {
   return (
     <div className='bg-gray-100'>
       <Navbar />
-      <div className="grid grid-cols-12 px-36">
-        <div className="col-span-2 ">
+      <div className="grid md:grid-cols-12 grid-cols-1 xl:px-36 p-2 " >
+        <div className="col-span-2  lg:flex hidden ">
           <Sidebar />
         </div>
-        <div className='col-span-10'>
+        <div className='col-span-10 bg-white mt-2 rounded-lg shadow-lg'>
           <Outlet />
 
         </div>
