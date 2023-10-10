@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { FaUserPlus } from "react-icons/fa";
+import { FaUserPlus, FaUserAlt } from "react-icons/fa";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
+
 import {
   RiNotification3Line,
   RiArrowDownSLine,
@@ -69,13 +70,19 @@ const openModal = () => {
     //menu que del navar informacion del usuario
     <Menu 
           menuButton={
-            <MenuButton className="flex items-center gap-x-2   hover:bg-secondary-100 p-2 rounded-lg transition-colors">
+            <MenuButton className="flex    hover:bg-secondary-100 p-2 rounded-lg transition-colors">
+             <div className="lg:flex hidden items-center gap-x-2 ">
+ 
               <img
                 src="https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&w=600"
                 className="w-6 h-6 object-cover rounded-full"
-              />
+                />
              <div className="bg-gradient-to-r from-sky-500 to-indigo-500 text-transparent bg-clip-text"> <span className="font-bold font-poppins">{name}</span> </div>
               <RiArrowDownSLine />
+                </div>
+                <button className="lg:hidden flex flex justify-center relative  items-center px-2  py-2 border-[1px] border-gray-900  rounded-lg gap-2  hover:bg-gray-900 hover:text-white font-poppins shadow-lg">
+                  <FaUserAlt /> 
+                </button>
             </MenuButton>
           }
           align="end"

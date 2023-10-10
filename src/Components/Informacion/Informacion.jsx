@@ -48,7 +48,7 @@ const Informacion = () => {
     <>
       <div className="flex  justify-center   rounded-lg ">
         {/* menu horizontal en pantalla laptop   */}
-        <div className=" lg:flex hidden   px-16 rounded-lg justify-center items-center bg-gradient-to-r from-sky-500 to-indigo-500 shadow-lg ">
+        <div className=" lg:flex hidden   px-16 rounded-lg justify-center items-center bg-gradient-to-r from-sky-500  text-sky-500 to-indigo-500 shadow-lg ">
           {info.map((item) => (
             <div className=" flex flex-wrap  py-2 rounded-lg   text-center ">
               <button
