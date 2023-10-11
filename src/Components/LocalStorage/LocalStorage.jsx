@@ -80,7 +80,7 @@ const openModal = () => {
              <div className="bg-gradient-to-r from-sky-500 to-indigo-500 text-transparent bg-clip-text"> <span className="font-bold font-poppins">{name}</span> </div>
               <RiArrowDownSLine />
                 </div>
-                <button className="lg:hidden flex flex justify-center relative  items-center px-2  py-2 border-[1px] border-gray-900  rounded-lg gap-2  hover:bg-gray-900 hover:text-white font-poppins shadow-lg">
+                <button className="lg:hidden flex justify-center relative  items-center px-2  py-2 border-[1px] border-gray-900  rounded-lg gap-2  hover:bg-gray-900 hover:text-white font-poppins shadow-lg">
                   <FaUserAlt /> 
                 </button>
             </MenuButton>

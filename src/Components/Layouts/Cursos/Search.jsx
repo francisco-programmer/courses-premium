@@ -51,7 +51,7 @@ const Search = () => {
         filteredProducts === null && (<p>no escribiste nada</p>)
       }
 
-<div className="grid lg:grid-cols-4 grid-cols-2 gap-4 mt-2">
+<div className="grid lg:grid-cols-4 grid-cols-2 gap-4 ">
         {filteredProducts.map((product) => (
           <div
             key={product.id}

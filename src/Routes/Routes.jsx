@@ -14,6 +14,7 @@ import ComoComprarConPaypal from '../Components/Informacion/ComoComprarConPaypal
 import MediosDePago from '../Components/Informacion/MediosDePago'
 import Contacto from '../Components/Informacion/Contacto'
 import CategoryCourses from '../Components/Layouts/Cursos/CategoryCourses'
+import Home from '../Components/Layouts/Home'
 
 
 const router = createBrowserRouter([
@@ -21,16 +22,16 @@ const router = createBrowserRouter([
     path: "/",
     component: <App />,
     errorElement: <ErrorPage404 />,
-    children: [
-      {
-        index: true,
-        element: <HomePage />,
-      },
-    ],
+    
   },
   {
     element: <HomePage />,
     children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      
       {
         path: "/:nameproduct",
         element: <ProductPage />,

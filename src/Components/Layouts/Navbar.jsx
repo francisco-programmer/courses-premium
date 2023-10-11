@@ -26,7 +26,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="flex justify-between  items-center md:px-36 md:pt-10 py-5 px-2 bg-gray-100">
+      <div className="flex justify-between  items-center md:px-36  px-2 bg-gray-100">
         <div>
           <img src={logo} alt="cursos baratos" className="lg:w-60 w-40 cursor-pointer" onClick={() => navigate('/')}/>
         </div>
