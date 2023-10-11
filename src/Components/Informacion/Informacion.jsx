@@ -10,6 +10,7 @@ import {
   RiThumbUpLine,
   RiChat3Line,
 } from "react-icons/ri";
+import {BiSolidRightArrow} from 'react-icons/bi'
 import { useNavigate } from "react-router-dom";
 
 const Informacion = () => {
@@ -61,10 +62,11 @@ const Informacion = () => {
           ))}
         </div>
       </div>
-      <div className="lg:hidden  flex">
+{/* menu mobile */}
+      <div className="lg:hidden flex flex-col  ">
         <Menu
           menuButton={
-            <MenuButton className="text-gray-100 font-poppins hover:text-sky-500">
+            <MenuButton className="text-gray-100 font-poppins hover:underline">
               Informacion
             </MenuButton>
           }
@@ -72,9 +74,20 @@ const Informacion = () => {
           arrow
           transition
         >
-          <button>
-            <MenuItem>Preguntas Frecuentes</MenuItem>
-          </button>
+          {info.map((item) => (
+             <MenuItem>
+              <button
+                className=" font-poppins  cursor-pointer flex items-center gap-2"
+                onClick={() => handleInfoClick(item)}
+              >
+                <div>
+                  <BiSolidRightArrow className="text-[8px]" />
+                </div>
+               {item.name}
+              </button>
+              </MenuItem>
+          ))}
+          
         </Menu>
       </div>
     </>

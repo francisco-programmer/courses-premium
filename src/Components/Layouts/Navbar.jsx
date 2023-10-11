@@ -26,7 +26,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="flex justify-between  items-center md:px-36  px-2 bg-gray-100">
+      <div className="flex justify-between  items-center md:px-36 px-2 bg-gray-100 pt-2">
         <div>
           <img src={logo} alt="cursos baratos" className="lg:w-60 w-40 cursor-pointer" onClick={() => navigate('/')}/>
         </div>
@@ -76,9 +76,11 @@ const Navbar = () => {
         <Informacion />
       </div>
 
-      <div className="lg:hidden  flex p-2 mt-2 justify-around bg-gradient-to-r from-sky-500 to-indigo-500 shadow-lg ">
-        <Informacion />
-        <p className="text-gray-100">|</p>
+      <div className="lg:hidden  flex p-2 mt-2 justify-around items-center  bg-gradient-to-r from-sky-500 to-indigo-500 shadow-lg ">
+       <div>
+        <Informacion />      
+        </div>
+        <span className="text-gray-100">|</span> 
         <Sidebar />
       </div>
     </div>

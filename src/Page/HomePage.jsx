@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 const HomePage = () => {
   return (
-    <div className='bg-gray-100'>
+    <div className='bg-gray-100 '>
       <Navbar />
       <div className="grid md:grid-cols-12 grid-cols-1 xl:px-36    " >
         <div className="col-span-2  lg:flex hidden ">
