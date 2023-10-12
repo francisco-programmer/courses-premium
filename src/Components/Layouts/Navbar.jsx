@@ -6,7 +6,7 @@ import LocalStorage from "../LocalStorage/LocalStorage";
 import { useNavigate} from "react-router-dom";
 import Informacion from '../Informacion/Informacion'
 import Sidebar from "./Sidebar";
-import logo from '../../../public/logo.png'
+
 
 
 const Navbar = () => {
@@ -28,7 +28,7 @@ const Navbar = () => {
     <div>
       <div className="flex justify-between  items-center md:px-36 px-2 bg-gray-100 pt-2">
         <div>
-          <img src={logo} alt="cursos baratos" className="lg:w-60 w-40 cursor-pointer" onClick={() => navigate('/')}/>
+          <img src="https://i.imgur.com/n7uUJV6.png" alt="cursos baratos" className="lg:w-60 w-40 cursor-pointer" onClick={() => navigate('/')}/>
         </div>
 
         <form

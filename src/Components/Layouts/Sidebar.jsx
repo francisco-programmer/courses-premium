@@ -22,7 +22,8 @@ const Sidebar = () => {
     {name: "Idiomas", route: "idiomas"},
     {name: "Diseño", route: "diseño"},
     {name: "Desarrollo Personal", route:"desarrollo personal"},
-    {name: "Negocio", route: "negocio"}
+    {name: "Negocio", route: "negocio"},
+    {name:"Ventas", route: "ventas"}
   ];
   const navigate = useNavigate();
   const handleProductClick = (item) => {
