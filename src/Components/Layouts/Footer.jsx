@@ -81,7 +81,7 @@ const Footer = () => {
         <div className='pt-5 flex flex-col  items-start justify-start text-start gap-2'>
           <p className="font-poppins font-bold text-gray-600">Información</p>
           {info.map((item) => (
-            <button className="font-poppins text-sm hover:underline hover:text-sky-500 text-start" onClick={() => handleInfoClick(item)}>
+            <button className="font-poppins text-sm hover:underline text-gray-500 hover:text-sky-500 text-start" onClick={() => handleInfoClick(item)}>
               {item.name}
             </button>
           ))}
@@ -91,7 +91,7 @@ const Footer = () => {
 
         {categorias.map((item) => (
           <div>
-            <button className="font-poppins text-sm hover:underline hover:text-sky-500 text-start" onClick={() => handleCategoryClick(item)}>
+            <button className="font-poppins text-gray-500 text-sm hover:underline hover:text-sky-500 text-start" onClick={() => handleCategoryClick(item)}>
               {item.name}
             </button>
             </div>
