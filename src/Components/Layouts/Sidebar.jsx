@@ -14,7 +14,7 @@ import {
 } from "react-icons/ri";
 
 const Sidebar = () => {
-  const categorias = [
+   const categorias = [
     { name: "Descargas Gratuitas", route: "descargas-gratuitas" },
     { name: "Marketing", route: "marketing" },
     { name: "Programación", route: "programacion" },

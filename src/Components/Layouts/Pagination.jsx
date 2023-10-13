@@ -32,7 +32,7 @@ const Pagination = () => {
   };
   return (
     <div>
-        <div className='bg-gradient-to-r  from-sky-500 to-indigo-500 text-transparent bg-clip-text'>
+        <div className='bg-gradient-to-r  from-sky-500 to-indigo-500 text-transparent bg-clip-text '>
 
         <p className='text-xl text-center font-poppins font-bold '>Todos los cursos </p>
         </div>
@@ -84,7 +84,7 @@ const Pagination = () => {
       </div>
 
       {/* Mostrar la paginación */}
-      <div className="mt-10 flex justify-center gap-2">
+      <div className="mt-10 flex justify-center gap-2 mb-10">
         {/* Botón de página anterior */}
         <button
           onClick={() => handlePageChange(currentPage - 1)}
@@ -95,6 +95,9 @@ const Pagination = () => {
         </button>
 
         {/* Números de página */}
+        
+
+       
         {Array.from({ length: totalPages }, (_, index) => index + 1).map(
           (pageNumber) => (
             <button
@@ -112,10 +115,11 @@ const Pagination = () => {
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className='border-[1px] border-gray-200    font-poppins px-3 py-1 rounded-lg'
+          className='border-[1px] border-gray-200    font-poppins px-3 py-1 rounded-lg '
         >
           Siguiente
         </button>
+        
       </div>
     </div>
   );
