@@ -1,12 +1,14 @@
 import React from 'react'
 import Carrusel from './Carrusel'
+import Pagination from './Pagination'
 
 
 const Home = () => {
   return (
-    <div>
+    <div className=''>
         
         <Carrusel />
+        <Pagination />
     </div>
   )
 }

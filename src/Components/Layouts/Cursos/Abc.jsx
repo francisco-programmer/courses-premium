@@ -6,11 +6,11 @@ export const products = [
     price: "2.00",
     formato: "Videos",
     peso: "9.36 GB",
-    category: "Marketing",
+    category: "Ventas",
     pagina_venta:
       "https://hotmart.com/es/marketplace/productos/venta-organica-2/H42459985A",
     link_poster:
-      "https://cursosenoferta.com/10008-large_default/venta-organica-franciso-gomez-sanchez.jpg",
+      "https://i.imgur.com/HRnldKo.png",
     image_pagina_venta: "https://i.imgur.com/76W6MFY.png",
     link_del_producto: "https://disk.yandex.com/d/dj13BloKihaOVQ",
     route: "venta-organica",
