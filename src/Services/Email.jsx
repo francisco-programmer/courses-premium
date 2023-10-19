@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, {useState, useEffect} from "react";
 
 import {
   Body,
@@ -16,13 +16,14 @@ import {
   Tailwind,
 } from "@react-email/components";
 
-const Email = ({ cartItems }) => {
-  
-
-  console.log(cartItems);
+const Email = ({ cartItems}) => {
+//sacamos el total a pagar
+  const total = cartItems.reduce((acumulador, item) => {
+    return acumulador + parseFloat(item.price);
+  }, 0);  
 
   return (
-    <Html lang="en">
+    <Html lang="en" className="font-poppins">
       <Tailwind
         config={{
           theme: {
@@ -33,8 +34,9 @@ const Email = ({ cartItems }) => {
         }}
       >
         <Section>
-          <Text >Hola, Francisco Gracias por en comprar en <Link>Cursospremium10</Link></Text>
-          <Text>Para acceder a tu Producto Haz Click!📍 sobre el nombre </Text>
+          <Img src="https://i.imgur.com/n7uUJV6.png"></Img>
+          <Text >Hola,  Gracias por en comprar en <Link>Cursos Baratos</Link></Text>
+          <Text>Haz Click!📍 sobre el nombre del productos para disfrutar!</Text>
           <Text className="bg-sky-500 font-bold font-poppins text-white">
             Detalles de tu pedido
           </Text>
@@ -81,14 +83,15 @@ const Email = ({ cartItems }) => {
 
           ))}
           <Row>
-            <Column className="bg-white"><Text className="text-end">Total: $US 0.00</Text></Column>
+            <Column className="bg-white"><Text className="text-end">Total: $US {total}.00</Text></Column>
           </Row>
         </Section>
 
         <Hr />
 
         <Section>
-          <Text></Text>
+          <Text className="font-poppins">Estamos encantados de tenerte como parte de nuestra comunidad de estudiantes apasionados por el aprendizaje. Queremos agradecerte por tu reciente compra de nuestros cursos premium a precios increíblemente bajos. ¡Esperamos que estés disfrutando de tu experiencia de aprendizaje!</Text>
+            <Text>Nos gustaría invitarte a compartir la emoción del aprendizaje con tus amigos y familiares. Creemos que todos merecen tener acceso a la educación de calidad a precios asequibles, y con tu ayuda, puedes hacer que eso suceda.</Text>
         </Section>
       </Tailwind>
     </Html>

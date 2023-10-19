@@ -1,34 +1,28 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { useContext } from "react";
 import ShoppingCartContext from "../../Context/ShoppingCartContext";
-import { FaUserPlus, FaShoppingCart } from "react-icons/fa";
+import {  FaShoppingCart } from "react-icons/fa";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { AiFillCloseCircle } from "react-icons/ai";
-import PaypalButton from "./Paypal/PaypalButton";
 import Checkout from "./Paypal/Checkout";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
-import {
-  RiNotification3Line,
-  RiArrowDownSLine,
-  RiSettings3Line,
-  RiLogoutCircleRLine,
-  RiThumbUpLine,
-  RiChat3Line,
-} from "react-icons/ri";
+
 
 const ShoppinCart = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const {cartItems,  removeFromCart } = useContext(ShoppingCartContext);
+  const [total, setTotal] = useState('');
 
   // verificar si esta registrado en el localstore
+  const user = localStorage.getItem("user");
   useEffect(() => {
-    const user = localStorage.getItem("user");
     if (user) {
       setLoggedIn(true);
     }
-  }, [localStorage.getItem("user")]);
+  }, [user]);
 
   // abrir modal
   const openModal = () => {
@@ -39,28 +33,19 @@ const ShoppinCart = () => {
     setIsOpen(false);
   };
 
-  // desestructuramos las variables del contexto
-  const { cartItems, addToCart, removeFromCart, clearCart } =
-    useContext(ShoppingCartContext);
-
   // sacar el total a pagar en el carrito de compra
-  const total = cartItems.reduce((acumulador, item) => {
-    return acumulador + parseFloat(item.price);
-  }, 0);
+  
 
-  // se obtienen los titulos de cada producto en el carrito de compra
-  const obtenerTitulos = cartItems.reduce(
-    (accumulator, currentProduct, index) => {
-      if (index === 0) {
-        return currentProduct.title;
-      } else {
-        return `${accumulator}, ${currentProduct.title}`;
-      }
-    },
-    ""
-  );
+   useEffect(()=> {
+    const caltotal= cartItems.reduce((acumulador, item) => {
+      return acumulador + parseFloat(item.price);
+    }, 0);
+    setTotal(caltotal)
+    
+   },[cartItems])
+    
 
-  return (
+    return (
     <>
       <div className="">
         <Menu
@@ -78,7 +63,7 @@ const ShoppinCart = () => {
           }
           align="start"
           arrow
-          arrowClassName=""
+          
           transition
           menuClassName=""
         >
@@ -117,14 +102,14 @@ const ShoppinCart = () => {
                     </p>
                     <p className="col-span-5 text-gray-900 ">Total a pagar </p>
                     <p className="p-2 col-span-2  text-gray-900 font-bold font-poppins">
-                      ${total}.0
+                      ${total}.00
                     </p>
                   </div>
                 </div>
 
                 <div>
                   {loggedIn ? (
-                    <Checkout total={total} obtenerTitulos={obtenerTitulos} />
+                    <Checkout total={total}/>
                   ) : (
                     <p className="font-bold text-red-600 bg-white text-center">
                       Por favor registrate para continuar con la compra
@@ -174,6 +159,7 @@ const ShoppinCart = () => {
                   {cartItems.map((item) => (
                     <li key={item.id} className=" rounded-lg p-2 ">
                       <div className="grid grid-cols-4">
+                        
                         <p className="col-span-4">{item.title}</p>
                         <div className="flex items-center">
                           <p>${item.price}</p>
@@ -203,7 +189,7 @@ const ShoppinCart = () => {
 
                   <div>
                     {loggedIn ? (
-                      <Checkout total={total} obtenerTitulos={obtenerTitulos} />
+                      <Checkout total={total}/>
                     ) : (
                       <p className="font-bold text-red-600 bg-white text-center">
                         Por favor registrate para continuar con la compra

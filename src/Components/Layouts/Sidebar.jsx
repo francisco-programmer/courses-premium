@@ -40,13 +40,13 @@ const Sidebar = () => {
     <div className="">
       <div className="bg-white rounded-lg  lg:mt-2 shadow-lg">
         <div className=" lg:flex hidden flex-col gap-1 pr-2   ">
-          <div className=""></div>
+        
           <p className=" text-sky-500  text-center  font-poppins bg-white rounded-lg  ">
             Categorias
           </p>
           {hr}
-          {categorias.map((item) => (
-            <div className="">
+          {categorias.map((item, index) => (
+            <div key={index} className="">
               <button
                 onClick={() => handleProductClick(item)}
                 className="font-poppins flex items-center gap-1 text-sm hover:underline hover:cursor-pointer"
@@ -74,8 +74,8 @@ const Sidebar = () => {
           arrow
           transition
         >
-          {categorias.map((item) => (
-            <MenuItem >
+          {categorias.map((item, index) => (
+            <MenuItem key={index} >
               <button
                 onClick={() => handleProductClick(item)}
                 className="font-poppins flex items-center gap-1 hover:underline hover:cursor-pointer"

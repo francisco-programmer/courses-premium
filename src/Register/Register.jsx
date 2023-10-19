@@ -56,7 +56,7 @@ const Register = () => {
         
       </div>
       <hr className="border-gray-100 mt-2"></hr>
-      <form   className='py-10  grid grid-cols-4 items-center gap-5'>
+      <form   className='py-10  grid lg:grid-cols-4 items-center gap-5'>
         <p className='font-poppins '>Nombre Completo <strong className='text-red-500'>*</strong></p>
         <input type="text" required placeholder='Nombre y Apellido' value={name} className='bg-gray-100 p-2 rounded-lg focus:outline-none col-span-3' onChange={(e) => setName(e.target.value)}/>
         <p className='font-poppins col-span-1 flex'>Correo Electronico <strong className='text-red-500'>*</strong><div>{emailError ? <AiFillAlert className='text-red-500 animate-pulse'/> : ""}</div></p>

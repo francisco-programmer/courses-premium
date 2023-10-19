@@ -1,13 +1,13 @@
 import React,{useState} from 'react'
 import { useNavigate} from 'react-router-dom';
 import {AiFillAlert} from 'react-icons/ai'  
-import { ToastContainer, toast } from 'react-toastify';
+
 
 
 
 const Contacto = () => {
 
-  const notify = toast("Mensaje Enviado")
+ 
 
     const navigate = useNavigate()
     const [name, setName] = useState('');
@@ -38,13 +38,12 @@ const Contacto = () => {
     const handleSubmit = () => {          
       toast("Mensaje Enviado")               
       };
-    console.log(email, name, address)
+   
 
   return (
     <div className="p-5">
 
-      <ToastContainer 
-      />
+     
 
       <div className="bg-gradient-to-r from-sky-500 to-indigo-500   text-transparent bg-clip-text">
         <p className="font-bold text-3xl ">Contáctanos</p>      

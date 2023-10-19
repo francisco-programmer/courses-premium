@@ -50,8 +50,8 @@ const Informacion = () => {
       <div className="flex  justify-center   rounded-lg ">
         {/* menu horizontal en pantalla laptop   */}
         <div className=" lg:flex hidden   px-16 rounded-lg justify-center items-center bg-gradient-to-r from-sky-500  text-sky-500 to-indigo-500 shadow-lg ">
-          {info.map((item) => (
-            <div className=" flex flex-wrap  py-2 rounded-lg   text-center ">
+          {info.map((item, index) => (
+            <div key={index} className=" flex flex-wrap  py-2 rounded-lg   text-center ">
               <button
                 className="text-white  font-poppins border-r-[1px] px-2  hover:underline cursor-pointer"
                 onClick={() => handleInfoClick(item)}
@@ -74,8 +74,8 @@ const Informacion = () => {
           arrow
           transition
         >
-          {info.map((item) => (
-             <MenuItem>
+          {info.map((item, index) => (
+             <MenuItem key={index}>
               <button
                 className=" font-poppins  cursor-pointer flex items-center gap-2"
                 onClick={() => handleInfoClick(item)}

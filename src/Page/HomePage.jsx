@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{lazy, Suspense} from 'react'
 import Navbar from '../Components/Layouts/Navbar'
 import Sidebar from '../Components/Layouts/Sidebar'
 import { Outlet } from "react-router-dom";
@@ -13,7 +13,9 @@ const HomePage = () => {
           <Sidebar />
         </div>
         <div className="col-span-10 bg-white mt-2 rounded-lg shadow-lg">
+          <Suspense fallback={<div>...cargando</div>}>
           <Outlet />
+          </Suspense>
         </div>
       </div>
       <Footer />

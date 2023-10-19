@@ -67,33 +67,42 @@ const Footer = () => {
         <div className="pt-5">
           <p className="font-poppins font-bold text-gray-600">Síguenos</p>
           <div className="flex flex-col ">
-            <button className='flex items-center font-poppins text-sm  gap-2 text-gray-500 hover:text-rose-500 '>
-              <FaTiktok className=" " /> TikTok 
+            <button className="flex items-center font-poppins text-sm  gap-2 text-gray-500 hover:text-rose-500 ">
+              <FaTiktok className=" " /> TikTok
             </button>
-            <button className='flex items-center font-poppins gap-2 text-sm  text-gray-500 hover:text-blue-500 '>
+            <button className="flex items-center font-poppins gap-2 text-sm  text-gray-500 hover:text-blue-500 ">
               <FaFacebookSquare className=" " /> Facebook
             </button>
-            <button className='flex items-center font-poppins gap-2 text-sm  text-gray-500 hover:text-pink-500 '>
+            <button className="flex items-center font-poppins gap-2 text-sm  text-gray-500 hover:text-pink-500 ">
               <FiInstagram className=" " /> Instagram
             </button>
           </div>
         </div>
-        <div className='pt-5 flex flex-col  items-start justify-start text-start gap-2'>
+
+        <div className="pt-5 flex flex-col  items-start justify-start text-start gap-2">
           <p className="font-poppins font-bold text-gray-600">Información</p>
-          {info.map((item) => (
-            <button className="font-poppins text-sm hover:underline text-gray-500 hover:text-sky-500 text-start" onClick={() => handleInfoClick(item)}>
-              {item.name}
-            </button>
+          {info.map((item, index) => (
+            <div key={index}>
+              <button
+                className="font-poppins text-sm hover:underline text-gray-500 hover:text-sky-500 text-start"
+                onClick={() => handleInfoClick(item)}
+              >
+                {item.name}
+              </button>
+            </div>
           ))}
         </div>
-        <div className='pt-5'>
-        <p className="font-poppins font-bold text-gray-600">Categorias</p>
 
-        {categorias.map((item) => (
-          <div>
-            <button className="font-poppins text-gray-500 text-sm hover:underline hover:text-sky-500 text-start" onClick={() => handleCategoryClick(item)}>
-              {item.name}
-            </button>
+        <div className="pt-5">
+          <p className="font-poppins font-bold text-gray-600">Categorias</p>
+          {categorias.map((item, index) => (
+            <div className=" key={index}">
+              <button
+                className="font-poppins text-gray-500 text-sm hover:underline hover:text-sky-500 text-start"
+                onClick={() => handleCategoryClick(item)}
+              >
+                {item.name}
+              </button>
             </div>
           ))}
         </div>

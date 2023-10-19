@@ -15,6 +15,10 @@ import MediosDePago from '../Components/Informacion/MediosDePago'
 import Contacto from '../Components/Informacion/Contacto'
 import CategoryCourses from '../Components/Layouts/Cursos/CategoryCourses'
 import Home from '../Components/Layouts/Home'
+import ConfirmarDescargaGratuita from '../Components/Shop/ConfirmarDescargaGratuita'
+import DownloadFree from '../Components/Shop/DownloadFree'
+import TransaccionRealizada from '../Components/Shop/TransaccionRealizada'
+import CheckDescargaGratuita from '../Components/Shop/CheckDescargaGratuita'
 
 
 const router = createBrowserRouter([
@@ -70,8 +74,20 @@ const router = createBrowserRouter([
         element: <MediosDePago />,
       },
       {
+        path: "/pago-confirmado/:total",
+        element: <TransaccionRealizada />
+      },
+      {
+        path: "/check-descarga-gratuita",
+        element: <CheckDescargaGratuita />
+      },
+      {
         path: "/contacto",
         element: <Contacto />,
+      },
+      {
+        path: "/confirmar-descarga-gratuita",
+        element: <ConfirmarDescargaGratuita />,
       },
 
       {

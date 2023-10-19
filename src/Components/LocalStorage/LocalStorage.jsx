@@ -47,7 +47,7 @@ const openModal = () => {
     closeModal()
   };
 
-
+//obtenemos los datos del usuario en el localstorage
   useEffect(() => {
     const user = localStorage.getItem('user');
 

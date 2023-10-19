@@ -1,52 +1,89 @@
 // import { CLIENT_ID } from "../Config/Config";
-import React, { useState, useEffect, useContext } from "react";
+import  { useState, useEffect, useContext } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { ToastContainer, toast } from "react-toastify";
 import ShoppingCartContext from "../../../Context/ShoppingCartContext";
 import DownloadFree from "../DownloadFree";
+import Plunk from "@plunk/node";
+import { useNavigate} from "react-router-dom";
+import Email from "../../../Services/Email";
+import { render } from "@react-email/components";
 
-const Checkout = ({total}, {obtenerTitulos}) => {
-  const CLIENT_ID = "";
-  const [show, setShow] = useState(false);
+const Checkout = () => { 
   const [success, setSuccess] = useState(false);
-  const [ErrorMessage, setErrorMessage] = useState("");
   const [orderID, setOrderID] = useState(false);
-  const [titulos, setTitulos] = useState("");
-  const {cartItems} = useContext(ShoppingCartContext)
+  const {cartItems, clearCart} = useContext(ShoppingCartContext)
+  const navigate = useNavigate()  
+  const plunk = new Plunk(import.meta.env.VITE_PLUNK_API_KEY);
+  const emailHtml = render(<Email cartItems={cartItems} />);
+  const [userEmail, setUserEmail] = useState('')
+  const [userName, setUserName] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [total, setTotal] = useState(0)
   
+ 
+//obtenemos los datos del usuario en el localstorage
+const user = localStorage.getItem("user")
+
+useEffect(()=> {  
+  if(user) {
+    setUserEmail(JSON.parse(user).email)
+    setUserName(JSON.parse(user).name)    
+  }
+},[user])
+
+useEffect(()=> {
+  const caltotal= cartItems.reduce((acumulador, item) => {
+    return acumulador + parseFloat(item.price);
+  }, 0);
+  setTotal(caltotal)
+
+ },[cartItems])
+
+  console.log("este es el total en checkout", total)
+
  
 
 
+
+  const enviarEmail = () => {
+    plunk.emails.send({
+      to: `${userEmail}`,
+      subject: `${userName} tu pedido de Cursos Baratos`,
+      body: emailHtml,      
+    })
+  }
+
   // creates a paypal order
-  const createOrder = (data, actions) => {
-
+  let createOrder = (data, actions) => {    
     return actions.order
-      .create({
-        purchase_units: [
-          {
-            description: `${obtenerTitulos}`,
-            amount: {
-              
-              value: `${total}`,
-            },
+    .create({
+      purchase_units: [
+        {
+          description: "productos",
+          amount: {           
+            currency: "USD",   
+            value: `${total}`,
           },
-        ],
-      })
-      .then((orderID) => {
-        setOrderID(orderID);
-        return orderID;
-      });
-  };
+        },
+      ],
+    })
+    .then((orderID) => {
+      setOrderID(orderID);
+      return orderID;
+    });
+    }
+console.log(orderID)
+  
+  
 
+ 
   // check Approval
   const onApprove = (data, actions) => {
     return actions.order.capture().then(function (details) {
       const { payer } = details;
       setSuccess(true);
       if (success) {
-        window.close();
-        notify();
-
+        window.close();      
       }
       
     });
@@ -59,22 +96,20 @@ const Checkout = ({total}, {obtenerTitulos}) => {
 
   useEffect(() => {
     if (success) {
-      
-      setTimeout(function() {
-        if(confirm('¡Gracias por su pago! Enviamos tu compra  a su Email!')){
-          window.location.reload()
-        }
+      enviarEmail();
+      setTimeout(function () {
+        navigate(`/pago-confirmado/${total}`);
+        clearCart();
       }, 1000);
-      console.log("Order successful . Your order id is--", orderID);
-      
-    }
-
-    
+      console.log("Order successful . Your order id is--", orderID);    }
   }, [success]);
+
+  
 
   return (
 
     <>
+    
     {
       total === 0 ? <DownloadFree /> : <div>
       <PayPalScriptProvider
@@ -82,13 +117,14 @@ const Checkout = ({total}, {obtenerTitulos}) => {
           clientId:
             "Afy79kiEr4c9KcLzRSWRxddprRUP36IxHKPmNEhwpR25C18PhUaHHcjnoZ5eLmiIN2GAcC2ZrHKVikBi",
           
-          currency: "USD",
+          
         }}
       >
         <div>
           <PayPalButtons
             style={{ layout: "vertical" }}
-            createOrder={createOrder}
+            createOrder={createOrder }
+            
             onApprove={onApprove}
           />
         </div>
