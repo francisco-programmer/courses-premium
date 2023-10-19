@@ -115,7 +115,7 @@ console.log(orderID)
       <PayPalScriptProvider
         options={{
           clientId:
-            "Afy79kiEr4c9KcLzRSWRxddprRUP36IxHKPmNEhwpR25C18PhUaHHcjnoZ5eLmiIN2GAcC2ZrHKVikBi",
+            "AeZ4xu9wrwLTJgQT431AxOvFOH6KjnUeP81SMkoZV3mkTm-Or4Qy1kSOML-HYY7Pz4FPMNHkJxczcpkY",
           
           
         }}

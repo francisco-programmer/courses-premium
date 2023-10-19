@@ -1,10 +1,11 @@
 import React, {Component } from 'react'
 import { useEffect } from 'react';
 import { BsCheckCircleFill} from 'react-icons/bs'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {BsCartPlus} from 'react-icons/bs'
 const TransaccionRealizada = () => {
   const {total} = useParams() 
+  const navigate = useNavigate()
 
 
 
@@ -31,7 +32,8 @@ const TransaccionRealizada = () => {
         </div>
       </div>
       <div className='text-white  flex justify-center  py-5'>
-        <button className='bg-gradient-to-r p-2 rounded-lg shadow-lg text-white  flex justify-center items-center gap-2  border-[1px] border-gray-200 from-sky-500 to-indigo-500'>
+        <button className='bg-gradient-to-r p-2 rounded-lg shadow-lg text-white  flex justify-center items-center gap-2  border-[1px] border-gray-200 from-sky-500 to-indigo-500'
+        onClick={() => navigate('/')}>
           Seguir Comprando<div><BsCartPlus /></div>
         </button>
       </div>
